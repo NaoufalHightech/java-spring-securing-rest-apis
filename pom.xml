@@ -15,7 +15,7 @@
 	<description>New Year's Resolutions REST API</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>14</java.version>
 		<spring-security.version>5.4.0-M1</spring-security.version>
 		<hibernate.version>5.4.13.Final</hibernate.version>
 
