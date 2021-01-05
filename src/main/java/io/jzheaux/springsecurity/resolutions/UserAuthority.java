@@ -10,7 +10,7 @@ public class UserAuthority {
     @Column
     String authority;
     @ManyToOne
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "username", referencedColumnName = "username")
     User user;
 
     UserAuthority() {}
