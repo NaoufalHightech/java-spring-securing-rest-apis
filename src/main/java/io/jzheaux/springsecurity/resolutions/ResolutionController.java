@@ -1,6 +1,7 @@
 package io.jzheaux.springsecurity.resolutions;
 
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,9 @@ public class ResolutionController {
 		this.resolutions = resolutions;
 	}
 
-	@PreAuthorize("hasAuthority('resolution:read')")
 	@GetMapping("/resolutions")
+	@PreAuthorize("hasAuthority('resolution:read')")
+	@PostFilter("filterObject.owner == authentication.name")
 	public Iterable<Resolution> read() {
 		return this.resolutions.findAll();
 	}
