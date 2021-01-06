@@ -40,6 +40,7 @@ public class ResolutionController {
 
 
 	@PreAuthorize("hasAuthority('resolution:write')")
+	@PostAuthorize("returnObject.orElse(null)?.owner == authentication.name")
 	@PutMapping(path="/resolution/{id}/revise")
 	@Transactional
 	public Optional<Resolution> revise(@PathVariable("id") UUID id, @RequestBody String text) {
@@ -48,6 +49,7 @@ public class ResolutionController {
 	}
 
 	@PreAuthorize("hasAuthority('resolution:write')")
+	@PostAuthorize("returnObject.orElse(null)?.owner == authentication.name")
 	@PutMapping("/resolution/{id}/complete")
 	@Transactional
 	public Optional<Resolution> complete(@PathVariable("id") UUID id) {
