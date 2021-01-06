@@ -13,12 +13,19 @@ public class UserAuthority {
     @JoinColumn(name = "username", referencedColumnName = "username")
     User user;
 
-    UserAuthority() {}
+    UserAuthority() {
+    }
 
     public UserAuthority(User user, String authority) {
         this.id = UUID.randomUUID();
         this.user = user;
         this.authority = authority;
+    }
+
+    public UserAuthority(UserAuthority autreUserAuthority) {
+        this.id = autreUserAuthority.id;
+        this.user = autreUserAuthority.user;
+        this.authority = autreUserAuthority.authority;
     }
 
     public User getUser() {

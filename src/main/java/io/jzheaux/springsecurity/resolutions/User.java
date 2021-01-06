@@ -10,7 +10,7 @@ import static java.util.Collections.*;
 public class User implements Serializable {
     @Id
     UUID id;
-    @Column(name = "username")
+    @Column
     String username;
     @Column
     String password;
