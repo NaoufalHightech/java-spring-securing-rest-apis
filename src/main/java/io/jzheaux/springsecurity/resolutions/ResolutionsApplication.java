@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
@@ -29,15 +28,5 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService(UserRepository users) {
         return new UserRepositoryUserDetailsService(users);
-    }
-
-    @Override
-    public UserDetailsService userDetailsService() {
-        return new InMemoryUserDetailsManager(
-                org.springframework.security.core.userdetails.User
-                        .withUsername("user")
-                        .password("{bcrypt}$2a$10$ehmyrSSSbhBWdrXmRc5//uk6azXEibmtGVlO/DRec/zxS9XmQUPrW")
-                        .authorities("resolution:read")
-                        .build());
     }
 }
