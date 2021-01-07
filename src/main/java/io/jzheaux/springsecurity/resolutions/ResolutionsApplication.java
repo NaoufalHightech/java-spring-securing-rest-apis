@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
@@ -30,5 +32,19 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService(UserRepository users) {
         return new UserRepositoryUserDetailsService(users);
+    }
+
+    @Bean
+    WebMvcConfigurer webMvcConfigurer(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        //.maxAge(0) // if using local verification, so that the browser doesn't cache any CORS preflight responses while you are making changes throughout the module
+                        .allowedOrigins("http://localhost:4000")
+                        .allowedMethods("HEAD")
+                        .allowedHeaders("Authorization");
+            }
+        };
     }
 }
