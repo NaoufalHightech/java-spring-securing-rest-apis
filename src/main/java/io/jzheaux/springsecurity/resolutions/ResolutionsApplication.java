@@ -22,6 +22,8 @@ public class ResolutionsApplication extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(authz -> authz
                         .anyRequest().authenticated())
                 .httpBasic(basic -> {
+                })
+                .cors(cors -> {
                 });
     }
 
