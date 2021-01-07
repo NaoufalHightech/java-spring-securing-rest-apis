@@ -16,7 +16,7 @@ public class ResolutionController {
 	public ResolutionController(ResolutionRepository resolutions) {
 		this.resolutions = resolutions;
 	}
-
+	@CrossOrigin //(maxAge = 0) if locally verifying
 	@GetMapping("/resolutions")
 	@PreAuthorize("hasAuthority('resolution:read')")
 	@PostFilter("@post.filter(#root)")
